@@ -17,12 +17,12 @@ Please make sure Python (>=3.8) is installed. If not, go to e.g. Microsoft Store
 > py -m venv .venv
 > .venv\Scripts\activate
 (.venv) > py -m pip install --upgrade pip
-(.venv) > py -m pip install pow_law
+(.venv) > py -m pip install pow-law
 ```
 
 After installation you can execute this tool with e.g. flag `-h` (for showing its use):
 ```
-(.venv) > pow_law -h
+(.venv) > pow-law -h
 ```
 
 Deactivate the Python virtual environment when you're done:
@@ -33,7 +33,7 @@ Deactivate the Python virtual environment when you're done:
 Don't forget to re-activate the Python virtual environment (from the installation directory) when you want to use this tool again:
 ```
 > .venv\Scripts\activate
-(.venv) > pow_law -h
+(.venv) > pow-law -h
 ```
 
 #### Ubuntu (>=20.04)
@@ -47,17 +47,17 @@ and/or
 $ python3 -m ensurepip --default-pip
 ```
 
-Next, install the `pow_law` tool with:
+Next, install the `pow-law` tool with:
 ```
 $ python3 -m venv .venv
 $ source .venv/bin/activate
 (.venv) $ python3 -m pip install --upgrade pip
-(.venv) $ python3 -m pip install pow_law
+(.venv) $ python3 -m pip install pow-law
 ```
 
 After installation you can execute this tool with e.g. flag `-h` (for showing its use):
 ```
-(.venv) $ pow_law -h
+(.venv) $ pow-law -h
 ```
 
 Deactivate the Python virtual environment when you're done:
@@ -68,12 +68,12 @@ Deactivate the Python virtual environment when you're done:
 Don't forget to re-activate the Python virtual environment (from the installation directory) when you want to use this tool again:
 ```
 $ source .venv/bin/activate
-(.venv) $ pow_law -h
+(.venv) $ pow-law -h
 ```
 
 ### From the Github repository
 
-Go to the [pow_law github repository](https://github.com/Chancellor-1/power_law), click the green `<> Code` button, click `Download ZIP` and extract the ZIP archive, or open a terminal / command prompt and execute: `git clone https://github.com/Chancellor-1/power_law.git` (for this Git needs to be installed).
+Go to the [pow-law github repository](https://github.com/Chancellor-1/power_law), click the green `<> Code` button, click `Download ZIP` and extract the ZIP archive, or open a terminal / command prompt and execute: `git clone https://github.com/Chancellor-1/power_law.git` (for this Git needs to be installed).
 
 #### Windows (>=10)
 
@@ -118,27 +118,27 @@ Below examples assume you've activated the Python virtual environment that you u
 
 1. To show the Bitcoin price (`-b`), together with its regression line (`-r`) and extend its trendlines for 5 future years (`-y 5`) on a log-log chart (`-s loglog`, which is the default) do:
 ```
-(.venv) $ pow_law -b -r -y 5
+(.venv) $ pow-law -b -r -y 5
 ```
 
 2. To show the Kaspa price (`-k`) on a log-linear chart (`-s loglin`) and extend its trendlines for 8 years (`-y 8`, which is the default) and update it's price via CoinAPI (`-u`, for this you need a valid CoinAPI license; see paragraph `Updating prices` below)
 ```
-(.venv) $ pow_law -k -s loglin -u
+(.venv) $ pow-law -k -s loglin -u
 ```
 
 3. To show the Ethereum price (`-e`), together with its regression line (`-r`) and no future years (`-y 0`) on a regular linear chart (`-s linlin`) do:
 ```
-(.venv) $ pow_law -e -r -y 0 -s linlin
+(.venv) $ pow-law -e -r -y 0 -s linlin
 ```
 
 4. To show the year-over-year return on investment (`-a`) for all assets for 15 future years (`-y 15`) on a regular linear chart (`-s linlin`) do:
 ```
-(.venv) $ pow_law -a -y 15 -s linlin
+(.venv) $ pow-law -a -y 15 -s linlin
 ```
 
 5. To show the regression results and the $R^2$ over time for all assets (`-r2`) on a linear chart (only option for this mode) do:
 ```
-(.venv) $ pow_law -r2 -s linlin
+(.venv) $ pow-law -r2 -s linlin
 ```
 
 For more advanced settings please take a look at the `./power_law/config/config.yaml` file. From this configuration file the trendlines can be updated and graph settings can be adjusted (e.g. resolution, line widths, YoY ROI start year etc.).
@@ -147,7 +147,7 @@ For more advanced settings please take a look at the `./power_law/config/config.
 
 Price data for all assets can be updated via CoinAPI, but you need a valid license for this. You can obtain a (free) CoinAPI license from [coinapi.io](https://www.coinapi.io/get-free-api-key?product_id=market-data-api). Once you have a CoinAPI license code, execute below (the X's represent your license code; make sure to include the hyphens):
 ```
-(.venv) $ pow_law -l XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+(.venv) $ pow-law -l XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 ```
 
 After this, the price data for the selected asset (`-b` for Bitcoin, `-k` for Kaspa, `-e` for Ethereum, `-a` for all assets) can be updated by adding the `-u` flag.

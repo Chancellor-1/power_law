@@ -36,5 +36,5 @@ def set_legend(ax: plt.Axes, line_width: float):
 def show():
     """ This function shows the plot in a window with tight layout and uniform title for all plots. """
     plt.tight_layout()
-    plt.get_current_fig_manager().set_window_title("Power Law v" + version('pow_law'))
+    plt.get_current_fig_manager().set_window_title("Power Law v" + version('pow-law'))
     plt.show()

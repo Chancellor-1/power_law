@@ -7,8 +7,8 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
 setup(
-    name='pow_law',
-    version='1.0.0',
+    name='pow-law',
+    version='1.0.1',
     packages=find_packages(),
     include_package_data=True,
     url='https://github.com/Chancellor-1/power_law',
@@ -28,7 +28,7 @@ setup(
     python_requires='>=3.8, <4',
     entry_points={
         'console_scripts': [
-            'pow_law=power_law.__main__:main'
+            'pow-law=power_law.__main__:main'
         ]
     }
 )
