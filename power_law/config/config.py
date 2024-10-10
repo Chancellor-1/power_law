@@ -18,10 +18,10 @@ class Config:
 
     def __init__(self):
         """ Constructor for the Config class. """
-        self.parser = argparse.ArgumentParser(prog='power_law',
+        self.parser = argparse.ArgumentParser(prog='pow_law',
             description="This tool can visualize the Bitcoin, Kaspa or Ethereum price together with "
                         "its power law price channel, among other related functionality.")
-        self.parser.add_argument('-v', '--version', action='version', version=version('power_law'))
+        self.parser.add_argument('-v', '--version', action='version', version=version('pow_law'))
         self.parser.add_argument('-u', '--update', action='store_true',
             help="Update price data of selected asset(s) ('-b', '-k', '-e' or '-a') via CoinAPI "
                  "(valid CoinAPI license needed).")

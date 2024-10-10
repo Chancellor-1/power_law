@@ -7,7 +7,7 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
 setup(
-    name='power_law',
+    name='pow_law',
     version='1.0.0',
     packages=find_packages(),
     include_package_data=True,
@@ -28,7 +28,7 @@ setup(
     python_requires='>=3.8, <4',
     entry_points={
         'console_scripts': [
-            'power_law=power_law.__main__:main'
+            'pow_law=power_law.__main__:main'
         ]
     }
 )
