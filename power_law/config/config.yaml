@@ -1,0 +1,101 @@
+# Copyright (C) 2024 Chancellor - License GPLv3
+btc: # Bitcoin
+  data:
+    directory: "btc"
+    historic_price_file: "btcusd_17-06-2010_31-07-2024.json"
+    recent_price_file: "btcusd_01-08-2024_till_now.json"
+    epoch_timestamp: 1230937200000 # 03-01-2009 (birthday of Bitcoin)
+    price_discovery_timestamp: 1286323200000 # 06-10-2010
+    halvings: [1354057200000, 1468015200000, 1589148000000, 1713564000000] # 28-11-2012, 09-07-2016, 11-05-2020, 19-04-2024
+    future_halvings: 3.92 # 3 years + 11 months (assuming ~2020-2024 cycle continuation)
+  plot:
+    title: "Bitcoin power law price trend"
+    x_label: "Time (years)"
+    y_label: "BTC price (US$)"
+  lower_trendline:
+    # The trend line is either defined by two points or by a power law formula of the form y = ax^k.
+    use_points: True # True when using points to derive the formula, False when using formula directly (a & k)
+    points:
+      p1: [1.5844, 6.0e-02] # (x, y)
+      p2: [15.844, 3.6e+04] # (x, y)
+    formula:
+      k: 5.7782 # exponent in y = ax^k
+      a: 4.2005e-03 # multiplier in y = ax^k
+  upper_trendline:
+    use_points: True
+    points:
+      p1: [1.5844, 4.5]
+      p2: [15.844, 2.85e+05]
+    formula:
+      k: 4.8016
+      a: 4.9378e-01
+  decreasing_upper_trendline:
+    use_points: False # always use formula
+    formula:
+      k: 5.5700
+      a: 0.2350
+      k_decrease: 1.08
+    endpoint_timestamp: 1948658400000 # 01-10-2031
+kas: # Kaspa
+  data:
+    directory: "kas"
+    historic_price_file: "kasusd_08-05-2022_31-07-2024.json"
+    recent_price_file: "kasusd_01-08-2024_till_now.json"
+    # Kaspa genesis is at 08-11-2021, but the first half year there was no mining reward reduction yet.
+    # Price discovery occurs around 21-07-2022, but obviously price is then already non-zero (~$0.0002)
+    # so the start of the power law trend lines should occur somewhere before that. It seems the start
+    # of the mining reward reduction results in a good fit.
+    epoch_timestamp: 1652047199000 # 08-05-2022 (start of Kaspa mining reward reduction)
+    price_discovery_timestamp: 1658440799000 # 21-07-2022 (start of Kaspa price discovery)
+  plot:
+    title: "Kaspa power law price trend"
+    x_label: "Time (years)"
+    y_label: "KAS price (US$)"
+  lower_trendline:
+    use_points: True
+    points:
+      p1: [0.2026, 0.000198]
+      p2: [1.0349, 0.0134]
+    formula:
+      k: 2.5844
+      a: 1.2263e-02
+  upper_trendline:
+    use_points: True
+    points:
+      p1: [0.2793, 0.0032]
+      p2: [0.8953, 0.0408]
+    formula:
+      k: 2.1852
+      a: 5.1956e-02
+eth: # Ethereum (the Ethereum price development doesn't follow a power law convincingly, but added for reference nonetheless)
+  data:
+    directory: "eth"
+    historic_price_file: "ethusd_08-08-2015_31-07-2024.json"
+    recent_price_file: "ethusd_01-08-2024_till_now.json"
+    epoch_timestamp: 1438639200000 # 03-08-2015
+    price_discovery_timestamp: 1451689200000 # 01-01-2016
+  plot:
+    title: "Ethereum 'power law' price trend"
+    x_label: "Time (years)"
+    y_label: "ETH price (US$)"
+  lower_trendline:
+    use_points: True
+    points:
+      p1: [1.33, 6.5]
+      p2: [4.5, 104]
+    formula:
+      k: 2.2747
+      a: 3.3978
+  upper_trendline:
+    use_points: True
+    points:
+      p1: [2.33, 1285]
+      p2: [5.66, 4150]
+    formula:
+      k: 1.3209
+      a: 420.41
+yoyroi:
+  start_year: 2011
+general:
+  image_resolution: [1920, 1080] # image resolution might need to increase depending on the number of future years (-y #)
+  line_width: 0.75
