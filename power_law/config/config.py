@@ -90,7 +90,10 @@ class Config:
         """ Private function to verify (and possibly adjust) the parsed arguments. """
         if self.args.years < 0 or self.args.years > 116:
             print("Future years cannot be less than 0 or greater than 116. Exiting...")
-            sys.exit(os.EX_CONFIG)
+            if sys.platform != 'win32':
+                sys.exit(os.EX_CONFIG)
+            else:
+                sys.exit(1)
 
         if self.args.all and self.args.scale == 'loglog':
             print("YoY ROI plot doesn't support logarithmic scaling of the horizontal axis. Plotting linear X-axis.")
@@ -117,4 +120,7 @@ class Config:
                 return yaml.safe_load(file)
         except FileNotFoundError:
             print("Could not load the power_law/config/config.yaml file. Does it exist? Exiting...")
-            sys.exit(os.EX_IOERR)
+            if sys.platform != 'win32':
+                sys.exit(os.EX_IOERR)
+            else:
+                sys.exit(1)

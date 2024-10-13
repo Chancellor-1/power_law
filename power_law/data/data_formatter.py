@@ -79,7 +79,10 @@ class DataFormatter:
                         prices.append(jd[1])
         except FileNotFoundError:
             print("Could not read price data from file " + filename + ". Exiting...")
-            sys.exit(os.EX_IOERR)
+            if sys.platform != 'win32':
+                sys.exit(os.EX_IOERR)
+            else:
+                sys.exit(1)
 
     def get_data(self) -> tuple:
         """ This function retrieves the time - prices data from the historic & recent price data JSON files.

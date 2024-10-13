@@ -48,7 +48,7 @@ def main() -> int:
     else: # only flag left is `-l` for CoinAPI license update
         coin_api.update_license_code(args.license)
 
-    return os.EX_OK
+    return os.EX_OK if sys.platform != 'win32' else 0
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -12,7 +12,7 @@ Note that Ethereum was added just for reference. It's price doesn't follow a pow
 
 #### Windows (>=10)
 
-Please make sure Python (>=3.8) is installed. If not, go to e.g. Microsoft Store, search for `python` and install a version >= 3.8. Next, open a command prompt, confirm that Python >= 3.8 was properly installed (with `py --version`), and execute:
+Please make sure Python (>=3.8.2, <3.13) is installed. If not, go to website for [Python releases for Windows](https://www.python.org/downloads/windows/) and download e.g. [Python 3.12.7 64-bit](https://www.python.org/ftp/python/3.12.7/python-3.12.7-amd64.exe). During installation don't forget to select the checkbox `Add python.exe to PATH`, since otherwise you cannot run Python from the command line. Please don't use Microsoft Store to install Python, because that doesn't always seem to properly set the environment variables. Next, open a command prompt, confirm that Python was properly installed (with `py --version`), and execute:
 ```
 > py -m venv .venv
 > .venv\Scripts\activate
@@ -38,7 +38,7 @@ Don't forget to re-activate the Python virtual environment (from the installatio
 
 #### Ubuntu (>=20.04)
 
-Ubuntu 20.04 and later has Python >=3.8 pre-installed (confirm with `python3 --version`). Make sure you have Python packages `pip` (confirm with `python3 -m pip --version`) and `venv` (confirm with e.g. `python3 -m venv --h`) installed. If not, please execute:
+Ubuntu 20.04 and later has Python >=3.8.2 pre-installed (confirm with `python3 --version`). Make sure you have Python packages `pip` (confirm with `python3 -m pip --version`) and `venv` (confirm with e.g. `python3 -m venv --h`) installed. If not, please execute:
 ```
 $ sudo apt-get update && sudo apt-get install python3-venv
 ```
@@ -77,7 +77,7 @@ Go to the [pow-law github repository](https://github.com/Chancellor-1/power_law)
 
 #### Windows (>=10)
 
-Please make sure Python (>=3.8) is installed. If not, go to e.g. Microsoft Store, search for `python` and install a version >= 3.8. Next, open a command prompt, confirm that Python >= 3.8 was properly installed (with `py --version`), go to the root of this repository and execute:
+Please make sure Python (>=3.8.2, <3.13) is installed. If not, go to website for [Python releases for Windows](https://www.python.org/downloads/windows/) and download e.g. [Python 3.12.7 64-bit](https://www.python.org/ftp/python/3.12.7/python-3.12.7-amd64.exe). During installation don't forget to select the checkbox `Add python.exe to PATH`, since otherwise you cannot run Python from the command line. Please don't use Microsoft Store to install Python, because that doesn't always seem to properly set the environment variables. Next, open a command prompt, confirm that Python was properly installed (with `py --version`), go to the root of this repository and execute:
 ```
 > .\setup.bat
 ```
@@ -89,7 +89,7 @@ After installation you can execute this tool with e.g. flag `-h` (for showing it
 
 #### Ubuntu (>=20.04)
 
-Ubuntu 20.04 and later has Python >=3.8 pre-installed (confirm with `python3 --version`). Make sure you have Python packages `pip` (confirm with `python3 -m pip --version`) and `venv` (confirm with e.g. `python3 -m venv --h`) installed. If not, please execute:
+Ubuntu 20.04 and later has Python >=3.8.2 pre-installed (confirm with `python3 --version`). Make sure you have Python packages `pip` (confirm with `python3 -m pip --version`) and `venv` (confirm with e.g. `python3 -m venv --h`) installed. If not, please execute:
 ```
 sudo apt-get update && sudo apt-get install python3-venv
 ```

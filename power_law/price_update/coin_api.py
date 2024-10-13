@@ -28,7 +28,10 @@ def __get_first_timestamp(directory: str, filename: str) -> int:
             return json_data[0][0]
     except FileNotFoundError:
         print("Could not read first timestamp from file " + filename + ". Exiting...")
-        sys.exit(os.EX_IOERR)
+        if sys.platform != 'win32':
+            sys.exit(os.EX_IOERR)
+        else:
+            sys.exit(1)
 
 def __write_timestamp_price_pairs(ohlcv_historical_data: list, directory: str, filename: str):
     """ This function writes the time - price data (ohlcv_historical_data) to a JSON file specified by the filename argument.
