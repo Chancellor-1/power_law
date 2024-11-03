@@ -43,9 +43,9 @@ kas: # Kaspa
     recent_price_file: "kasusd_01-08-2024_till_now.json"
     # Kaspa genesis is at 08-11-2021, but the first half year there was no mining reward reduction yet.
     # Price discovery occurs around 21-07-2022, but obviously price is then already non-zero (~$0.0002)
-    # so the start of the power law trend lines should occur somewhere before that. It seems the start
-    # of the mining reward reduction results in a good fit.
-    epoch_timestamp: 1652047199000 # 08-05-2022 (start of Kaspa mining reward reduction)
+    # so the start of the power law trend lines should occur somewhere before that. It seems close to
+    # the start of the Kaspa mining reward reduction (08-05-2022) results in a good fit.
+    epoch_timestamp: 1652651999000 # 15-05-2022 (i.e. one week after the start of the mining reward reduction)
     price_discovery_timestamp: 1658440799000 # 21-07-2022 (start of Kaspa price discovery)
   plot:
     title: "Kaspa power law price trend"
@@ -54,19 +54,19 @@ kas: # Kaspa
   lower_trendline:
     use_points: True
     points:
-      p1: [0.2026, 0.000198]
-      p2: [1.0349, 0.0134]
+      p1: [0.2026, 0.00026]
+      p2: [1.0349, 0.0138]
     formula:
-      k: 2.5844
-      a: 1.2263e-02
+      k: 2.4354
+      a: 1.269e-02
   upper_trendline:
     use_points: True
     points:
-      p1: [0.2793, 0.0032]
-      p2: [0.8953, 0.0408]
+      p1: [0.2793, 0.0037]
+      p2: [0.8953, 0.0435]
     formula:
-      k: 2.1852
-      a: 5.1956e-02
+      k: 2.1156
+      a: 5.497e-02
 eth: # Ethereum (the Ethereum price development doesn't follow a power law convincingly, but added for reference nonetheless)
   data:
     directory: "eth"

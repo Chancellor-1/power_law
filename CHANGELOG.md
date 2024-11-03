@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.0.3 (November 3rd 2024)
+
+- Updated price data
+- Updated Kaspa power law parameters
+
 ## Version 1.0.2 (October 13th 2024)
 
 - More restrictive setup requirements (e.g. [issue with Python 3.13](https://stackoverflow.com/a/30377257)).
