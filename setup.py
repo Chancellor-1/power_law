@@ -18,7 +18,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     install_requires=[
-        'matplotlib>=3.5.0',
+        'matplotlib>=3.7.0',
         'coinapi.rest.v1>=1.3',
         'pyyaml>=6.0',
         'scikit-learn>=1.0, <1.4',

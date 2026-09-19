@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, Colormap
 from matplotlib.collections import LineCollection
-from matplotlib import cm
+from matplotlib import colormaps
 
 def get_multicolored_line_collection(x: list, y: list, n: list, light_colormap: bool, line_width: float) -> LineCollection:
     """
@@ -29,7 +29,7 @@ def get_multicolored_line_collection(x: list, y: list, n: list, light_colormap: 
     points = data_t.reshape(-1, 1, 2) # pylint: disable=too-many-function-args
     segments = np.concatenate([points[:-1], points[1:]], axis = 1) # Shape [n, 2, 2], e.g. [[[x1, y1], [x2, y2]], [[x2, y2], [x3, y3]], ...]
     norm = plt.Normalize(min(n), max(n))
-    colormap = cm.get_cmap('jet')
+    colormap = colormaps['jet']
     if light_colormap:
         colormap = __cmap_map(lambda x: x/3 + 0.666, colormap)
     line_collection = LineCollection(segments, cmap = colormap, norm = norm, linewidth = line_width)

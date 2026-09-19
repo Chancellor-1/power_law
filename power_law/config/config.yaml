@@ -2,8 +2,8 @@
 btc: # Bitcoin
   data:
     directory: "btc"
-    historic_price_file: "btcusd_17-06-2010_31-07-2024.json"
-    recent_price_file: "btcusd_01-08-2024_till_now.json"
+    historic_price_file: "btcusd_17-06-2010_16-09-2026.json"
+    recent_price_file: "btcusd_17-09-2026_till_now.json"
     epoch_timestamp: 1230937200000 # 03-01-2009 (birthday of Bitcoin)
     price_discovery_timestamp: 1286323200000 # 06-10-2010
     halvings: [1354057200000, 1468015200000, 1589148000000, 1713564000000] # 28-11-2012, 09-07-2016, 11-05-2020, 19-04-2024
