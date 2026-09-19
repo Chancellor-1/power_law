@@ -39,8 +39,8 @@ btc: # Bitcoin
 kas: # Kaspa
   data:
     directory: "kas"
-    historic_price_file: "kasusd_08-05-2022_31-07-2024.json"
-    recent_price_file: "kasusd_01-08-2024_till_now.json"
+    historic_price_file: "kasusd_08-05-2022_16-09-2026.json"
+    recent_price_file: "kasusd_17-09-2026_till_now.json"
     # Kaspa genesis is at 08-11-2021, but the first half year there was no mining reward reduction yet.
     # Price discovery occurs around 21-07-2022, but obviously price is then already non-zero (~$0.0002)
     # so the start of the power law trend lines should occur somewhere before that. It seems close to
@@ -70,8 +70,8 @@ kas: # Kaspa
 eth: # Ethereum (the Ethereum price development doesn't follow a power law convincingly, but added for reference nonetheless)
   data:
     directory: "eth"
-    historic_price_file: "ethusd_08-08-2015_31-07-2024.json"
-    recent_price_file: "ethusd_01-08-2024_till_now.json"
+    historic_price_file: "ethusd_08-08-2015_16-09-2026.json"
+    recent_price_file: "ethusd_17-09-2026_till_now.json"
     epoch_timestamp: 1438639200000 # 03-08-2015
     price_discovery_timestamp: 1451689200000 # 01-01-2016
   plot:
