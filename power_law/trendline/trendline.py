@@ -76,4 +76,4 @@ class Trendline:
         Returns:
             str: Textual representation of the power law function $y = ax^k$, with $x$ = (year - epoch_year).
         """
-        return "$price = " + f"{self.a:.5f}" + r" \cdot (year - " + f"{epoch_year:.3f}" + ") ^{" + f"{self.k:.4f}" + "}$"
+        return "$price = " + f"{self.a:.5g}" + r" \cdot (year - " + f"{epoch_year:.3f}" + ") ^{" + f"{self.k:.5g}" + "}$"

@@ -14,28 +14,28 @@ btc: # Bitcoin
     y_label: "BTC price (US$)"
   lower_trendline:
     # The trend line is either defined by two points or by a power law formula of the form y = ax^k.
-    use_points: True # True when using points to derive the formula, False when using formula directly (a & k)
+    use_points: False # True when using points to derive the formula, False when using formula directly (a & k)
     points:
       p1: [1.5844, 6.0e-02] # (x, y)
       p2: [15.844, 3.6e+04] # (x, y)
     formula:
-      k: 5.7782 # exponent in y = ax^k
-      a: 4.2005e-03 # multiplier in y = ax^k
+      k: 5.8 # exponent in y = ax^k
+      a: 0.004 # multiplier in y = ax^k
   upper_trendline:
-    use_points: True
+    use_points: False
     points:
       p1: [1.5844, 4.5]
       p2: [15.844, 2.85e+05]
     formula:
-      k: 4.8016
-      a: 4.9378e-01
+      k: 4.8
+      a: 0.5
   decreasing_upper_trendline:
     use_points: False # always use formula
     formula:
-      k: 5.5700
-      a: 0.2350
-      k_decrease: 1.08
-    endpoint_timestamp: 1948658400000 # 01-10-2031
+      k: 5.8
+      a: 0.2
+      k_decrease_period: 16 # exponent decreases by 1 every 16 years
+    endpoint_timestamp: 1883080800000 # 03-09-2029 (intersection with lower trendline)
 kas: # Kaspa
   data:
     directory: "kas"

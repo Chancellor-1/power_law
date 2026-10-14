@@ -6,23 +6,22 @@ class DecreasingTrendline(Trendline):
     """ This class represents a decreasing exponential trendline. It derives from base class Trendline.
 
     Attributes:
-        k_decrease (float): Float value representing the amount that the initial exponential value (k) decreases over time from epoch
-        till endpoint_year.
+        k_decrease_period (float): Number of years over which the exponent decreases by 1, i.e. $y = ax^{k - x / period}$.
         endpoint_year (float): Float representing the year since Bitcoin epoch at which the decreasing trendline stops, i.e.
             hits the supporting trendline.
     """
 
-    def __init__(self, a: float, k: float, k_decrease: float, endpoint_year: float):
+    def __init__(self, a: float, k: float, k_decrease_period: float, endpoint_year: float):
         """ Constructor for the DecreasingTrendline class. """
         super().__init__(a, k)
-        self.k_decrease = k_decrease
+        self.k_decrease_period = k_decrease_period
         self.endpoint_year = endpoint_year
 
     @classmethod
     def config(cls, config: dict):
         """ Config based constructor. """
         a, k = Trendline.get_trendline_parameters(config['decreasing_upper_trendline'])
-        return cls(a, k, config['decreasing_upper_trendline']['formula']['k_decrease'], config['endpoint_year'])
+        return cls(a, k, config['decreasing_upper_trendline']['formula']['k_decrease_period'], config['endpoint_year'])
 
     def compute_list(self, xs: list) -> list:
         """ This function computes the decreasing trendline points from the xs list argument.
@@ -35,7 +34,7 @@ class DecreasingTrendline(Trendline):
         """
         # Note that endpoint_year is normally xs[-1], but xs[-1] could be smaller in case the xs range is limited to somewhere
         # before endpoint_year due to the future_years command line argument.
-        return [self.a * x ** (self.k - (x / self.endpoint_year) * self.k_decrease) for x in xs]
+        return [self.a * x ** (self.k - x / self.k_decrease_period) for x in xs]
 
     def get_formula(self, epoch_year: float) -> str:
         """ This function returns the decreasing trendline formula in textual form.
@@ -46,11 +45,8 @@ class DecreasingTrendline(Trendline):
         Returns:
             str: String representing the decreasing trendline formula textually.
         """
-        endpoint_year_str = f"{self.endpoint_year:.3f}"
         epoch_year_str = f"{epoch_year:.3f}"
         endpoint_actual_year_str = f"{epoch_year + self.endpoint_year:.3f}"
-        k = f"{self.k:.2f}"
-        k_decr = f"{self.k_decrease:.2f}"
-        a = f"{self.a:.5f}"
-        return "$price = " + a + r" \cdot (year - " + epoch_year_str + ") ^{" + k + " - " + k_decr + r" \cdot ((year - " + epoch_year_str + \
-            ") / " + endpoint_year_str + ")}$ for $year$ in range $[" + epoch_year_str + ", " + endpoint_actual_year_str + "]$"
+        x = "(year - " + epoch_year_str + ")"
+        return "$price = " + f"{self.a:g}" + r" \cdot " + x + " ^{" + f"{self.k:g}" + " - " + x + " / " + f"{self.k_decrease_period:g}" + \
+            "}$ for $year$ in range $[" + epoch_year_str + ", " + endpoint_actual_year_str + "]$"
