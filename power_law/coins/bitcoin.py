@@ -91,20 +91,25 @@ class Bitcoin(CommonCoin):
             tuple: A tuple containing two lists of floats. The first list represents the prices of the periodic trendline and the second
                 list the normalized prices of the periodic trendline (used for multi-color plotting).
         """
-        btc_first_cycle_duration = 2.6 # first halving cycle is a short cycle
-        steepness = 5
-        periodic_first_cycle = [ut - ((ut - lt) * (1 - pow(1 - abs(math.sin(math.pi * (t + 0.2) / btc_first_cycle_duration)), steepness))) \
-            for t, ut, lt in zip(time, upper_trendline_points, self.lower_trendline_points)]
-
-        # assume that 2nd halving cycle and beyond all have the same halving cycle duration (even though that's not completely true)
-        btc_cycle_duration = self.future_halvings_duration
-        steepness = 2
-        periodic_second_and_beyond_cycles = [ut - ((ut - lt) * (1 - pow(1 - abs(math.sin(math.pi * (t - 1.1) / btc_cycle_duration)), \
-            steepness))) for t, ut, lt in zip(time, upper_trendline_points, self.lower_trendline_points)]
-        # merge periodic_first_cycle & periodic_second_and_beyond_cycles together
-        timestamp_end_of_first_cycle = 1333317600000 # 01-04-2012
-        end_of_first_cycle = self.data_formatter.get_yeartime(timestamp_end_of_first_cycle)
-        merged_cycles = [pf if t < end_of_first_cycle else pb
-            for t, pf, pb in zip(time, periodic_first_cycle, periodic_second_and_beyond_cycles)]
+        # Each cycle is a power of (1 - |sin|) interpolated in log space between the lower and upper trendline: sharp tops, a fast
+        # decline and a long period near the lower trendline. Assume that the 2nd halving cycle and beyond all have the same
+        # duration (even though that's not completely true).
+        cycle_duration = self.future_halvings_duration
+        top_offset = 1.1 # cycle tops at top_offset + n * cycle_duration years since epoch
+        steepness = 1.5
+        # The short first cycle peaks at its actual top and ends at the bottom of the regular cycles. Both touch the lower trendline
+        # with zero slope there, so the merged trendline and its slope are continuous.
+        first_cycle_top = self.data_formatter.get_yeartime(1307570400000) # 09-06-2011
+        first_cycle_end = top_offset + cycle_duration / 2
+        first_cycle_half_duration = first_cycle_end - first_cycle_top
+        merged_cycles = []
+        for t, ut, lt in zip(time, upper_trendline_points, self.lower_trendline_points):
+            if t < first_cycle_top - first_cycle_half_duration:
+                n = 0.0
+            elif t < first_cycle_end:
+                n = (1 - abs(math.sin(math.pi * (t - first_cycle_top) / (2 * first_cycle_half_duration)))) ** steepness
+            else:
+                n = (1 - abs(math.sin(math.pi * (t - top_offset) / cycle_duration))) ** steepness
+            merged_cycles.append(lt * (ut / lt) ** n)
         normalized_cycles = [(p - lt) / (ut - lt) for p, lt, ut in zip(merged_cycles, self.lower_trendline_points, upper_trendline_points)]
         return merged_cycles, normalized_cycles
